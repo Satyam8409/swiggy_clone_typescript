@@ -1,73 +1,151 @@
-# React + TypeScript + Vite
+# Swiggy Clone – React + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Swiggy-inspired food ordering web application built using **React, TypeScript, Tailwind CSS, Redux Toolkit, and Async Thunk**. The project uses a live Swiggy API to fetch restaurant and food-related data and provides a responsive user interface for browsing restaurants and managing food items.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🍔 Browse restaurants and food items using a live Swiggy API
+- 🔍 Restaurant/food browsing experience
+- 🛒 Cart functionality
+- 🔐 Dummy authentication/login flow
+- 📱 Responsive UI
+- ⚛️ React with TypeScript
+- 🎨 Tailwind CSS for styling
+- 🗃️ Redux Toolkit for global state management
+- 🔄 Async Thunk for asynchronous API calls
+- 🧩 Reusable React components
+- ⚡ Vite development setup
 
-## React Compiler
+## 🔑 Demo Login Credentials
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The authentication in this project uses dummy credentials for demonstration purposes.
 
-## Expanding the ESLint configuration
+| Field | Value |
+|---|---|
+| Username | `emilys` |
+| Password | `emilyspass` |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> **Note:** These are dummy credentials and are not connected to a real authentication backend.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Frontend:** React
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State Management:** Redux Toolkit
+- **Async Operations:** Redux Toolkit Async Thunk
+- **API:** Live Swiggy API
+- **Build Tool:** Vite
+- **Package Manager:** npm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
+
+```text
+swiggy_clone_typescript/
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── redux/
+│   ├── services/
+│   ├── utils/
+│   ├── assets/
+│   ├── App.tsx
+│   └── main.tsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> The exact component/file names may vary as the project continues to evolve.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Installation & Setup
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Clone the repository
+
+```bash
+git clone <your-repository-url>
 ```
+
+### 2. Move into the project directory
+
+```bash
+cd swiggy_clone_typescript
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will then be available on the local development URL shown by Vite.
+
+## 🔄 API Integration
+
+This project integrates a **live Swiggy API** to retrieve restaurant and food-related information.
+
+The application handles API requests through Redux Toolkit and Async Thunk, allowing API data to be stored and managed through the application's global state.
+
+## 🔐 Authentication
+
+The login functionality is implemented as a **dummy authentication flow** for demonstration purposes.
+
+Use the following credentials:
+
+```text
+Username: emilys
+Password: emilyspass
+```
+
+No real user account or sensitive authentication data is involved.
+
+## 🛒 Application Flow
+
+1. Open the application.
+2. Log in using the demo credentials.
+3. Browse restaurants and food items.
+4. View restaurant/food details.
+5. Add items to the cart.
+6. Manage cart items and view the total.
+
+## 📦 Available Scripts
+
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
+
+## 🎯 Purpose
+
+This project was developed to practice and demonstrate:
+
+- React and TypeScript development
+- API integration
+- Redux Toolkit state management
+- Async Thunk
+- Component-based architecture
+- Tailwind CSS
+- Authentication flow
+- Real-world frontend application development
+
+## 👨‍💻 Author
+
+**Satyam Kumar Singh**
+
+Frontend Developer | MERN Stack Developer
