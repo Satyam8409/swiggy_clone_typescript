@@ -36,6 +36,7 @@ const initialState:InitialState={
     user:null,
     isAuthenticated:false,
     loading:true,
+    authChecking: true,
     error:null,
 }
 
@@ -43,47 +44,53 @@ const authSlice=createSlice({
     name:'auth',
     initialState,
     reducers:{
-        logout:(state)=>{
-            state.isAuthenticated=false;
-            state.user=null;
-            state.loading=false;
-            state.error=null;
+        logout: (state) => {
+            state.isAuthenticated = false;
+            state.user = null;
+            state.loading = false;
+            state.authChecking = false;
+            state.error = null;
         }
     },
-    extraReducers:(builder)=>{
-        builder
-            .addCase(fetchUserData.pending,(state)=>{
-                state.loading=true;
-                state.error=null;
-            })
-            .addCase(fetchUserData.fulfilled,(state,action)=>{
-                state.loading=false;
-                state.error=null;
-                state.user=action.payload;
-                state.isAuthenticated=true;
-            })
-            .addCase(fetchUserData.rejected,(state,action)=>{
-                state.error=action.payload || 'login failed';
-                state.isAuthenticated=false;
-                state.loading=false;
-            })
+    extraReducers: (builder) => {
+    builder
+        // Login
+        .addCase(fetchUserData.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(fetchUserData.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            state.user = action.payload;
+            state.isAuthenticated = true;
+        })
+        .addCase(fetchUserData.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload || 'login failed';
+            state.isAuthenticated = false;
+        })
 
-            //authCheck
-            .addCase(authCheck.pending,(state)=>{
-                state.loading=true;
-            })
-            .addCase(authCheck.fulfilled,(state,action)=>{
-                state.loading=false;
-                state.isAuthenticated=true;
-                state.user=action.payload;
-            })
-            .addCase(authCheck.rejected,(state,action)=>{
-                state.loading=false;
-                state.error=action.payload || 'token expired';
-                state.user=null;
-                state.isAuthenticated=false
-            })
-    }
+        // Initial authentication check
+        .addCase(authCheck.pending, (state) => {
+            state.authChecking = true;
+            state.error = null;
+        })
+        .addCase(authCheck.fulfilled, (state, action) => {
+            state.authChecking = false;
+            state.loading = false;
+            state.error = null;
+            state.isAuthenticated = true;
+            state.user = action.payload;
+        })
+        .addCase(authCheck.rejected, (state, action) => {
+            state.authChecking = false;
+            state.loading = false;
+            state.error = action.payload || 'token expired';
+            state.user = null;
+            state.isAuthenticated = false;
+        });
+}
 })
 
 export const {logout} =authSlice.actions

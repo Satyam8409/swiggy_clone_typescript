@@ -14,7 +14,7 @@ import { TOKEN } from "./utils/constants"
 export const App = () => {
 
   const dispatch=useAppDispatch();
-  const { loading } = useAppSelector((store) => store.auth);
+  const { authChecking  } = useAppSelector((store) => store.auth);
 
   useEffect(()=>{
     const token=JSON.parse(localStorage.getItem(TOKEN)!);
@@ -26,7 +26,7 @@ export const App = () => {
     }
   },[])
 
-  if (loading) {
+  if (authChecking ) {
     return (
       <div className="h-screen flex justify-center items-center">
         <span className="loading loading-spinner loading-xl"></span>

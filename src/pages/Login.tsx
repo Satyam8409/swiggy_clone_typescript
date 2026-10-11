@@ -13,7 +13,7 @@ type LoginDataType=z.infer<typeof loginFormSchema>
 
 export const Login = () => {
     const dispatch=useAppDispatch();
-    const {error}=useAppSelector(store=>store.auth);
+    const {error,loading}=useAppSelector(store=>store.auth);
 
     const {register,handleSubmit,formState:{errors}}=useForm<LoginDataType>({
         resolver:zodResolver(loginFormSchema)
@@ -27,6 +27,20 @@ export const Login = () => {
       <div className=" h-screen flex justify-center items-center">
         <div className="shadow-2xl border border-gray-200 rounded-lg p-7 w-sm">
             <h1 className="text-2xl text-center pb-5 font-bold">FoodCart</h1>
+            <div className="mb-5 rounded-lg border border-red-300 bg-red-50 p-3">
+                <p className="font-semibold text-red-700">
+                    Demo Login Credentials
+                </p>
+                <p className="mt-1 text-sm text-red-600">
+                    Use these credentials to access the demo application.
+                </p>
+                <p className="mt-2 text-sm text-gray-800">
+                    <span className="font-medium">Username:</span>emilys
+                </p>
+                <p className="text-sm text-gray-800">
+                    <span className="font-medium">Password:</span>emilyspass
+                </p>
+            </div>
             <form onSubmit={handleSubmit(submitLoginData)} className="flex flex-col gap-5">
                 <div className="form-control flex flex-col ">
                    <label className="label label-text" htmlFor="email">Username</label>
@@ -48,7 +62,14 @@ export const Login = () => {
                     error && <p className="text-red-500 text-center ">{error}</p>
                 }
                 <div className="form-control flex justify-center ">
-                    <button className="btn btn-primary" type="submit">Login</button>
+                    <button
+                        className="btn btn-primary"
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading && <span className="loading loading-spinner loading-sm"></span>}
+                        {loading ? "Logging in..." : "Login"}
+                    </button>
                 </div>
                 <div className="text-center text-sm">
                     <span >

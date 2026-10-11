@@ -2,17 +2,32 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import restaurantClient from "../../services/restaurantClient";
 import type { InitialState, RestData } from "../../utils/restdataThunkType";
 
-export const fetchRestData=createAsyncThunk<RestData[]>(
+export const fetchRestData = createAsyncThunk<RestData[]>(
     'restaurant/details',
-    async (_,thunk)=>{
-        try{
-            const response=await restaurantClient('/restaurants?lat=28.7040592&lng=77.10249019999999');
-            return response.data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
-        }catch(err){
-            return thunk.rejectWithValue('could not fetched data')
+    async (_, thunk) => {
+        // throw new Error("Testing Error Boundary 101");
+        try {
+            const response = await restaurantClient(
+                '/api/restaurants?lat=28.7040592&lng=77.10249019999999'
+            );
+
+            console.log("Restaurant API response:", response.data);
+
+            const restaurants =
+                response.data?.data?.cards?.[1]?.card?.card
+                    ?.gridElements?.infoWithStyle?.restaurants;
+
+            if (!restaurants) {
+                throw new Error("Restaurant data not found in API response");
+            }
+
+            return restaurants;
+        } catch (err) {
+            console.error("Restaurant API error:", err);
+            return thunk.rejectWithValue('Could not fetch restaurant data');
         }
     }
-)
+);
 
 const initialState:InitialState={
     restaurantData:null,

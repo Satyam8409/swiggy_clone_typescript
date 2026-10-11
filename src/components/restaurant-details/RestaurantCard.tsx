@@ -19,9 +19,9 @@ export const RestaurantCard = ({restDataObj}:RestaurantCardProps) => {
             />
             <div className="absolute inset-0 rounded-xl bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
             <div className="absolute bottom-3 left-3 text-white font-bold text-xl">
-                {restDataObj.info.aggregatedDiscountInfoV3.header}
+                {restDataObj.info.aggregatedDiscountInfoV3?.header}
                 {" "}
-                {restDataObj.info.aggregatedDiscountInfoV3.subHeader}
+                {restDataObj.info.aggregatedDiscountInfoV3?.subHeader}
             </div>
         </div>
             <div className="w-[95%] mx-auto mt-3">

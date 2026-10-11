@@ -14,6 +14,7 @@ export type InitialState={
     user:User|null,
     isAuthenticated:boolean,
     loading:boolean,
+    authChecking: boolean,
     error:string|null,
 }
 
